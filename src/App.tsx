@@ -1,17 +1,16 @@
 import React from 'react';
 import {Header} from "./components/header/Header";
-import {Sidebar} from "./components/sidebar/Sidebar";
 import {Navbar} from "./components/navbar/Navbar";
 import {Profile} from "./components/profile/Profile";
+import {AppWrappersStyled} from "./app.styled";
 
 function App() {
     return (
-        <div className="App">
-            <Navbar />
+        <AppWrappersStyled>
             <Header/>
-            <Sidebar/>
+            <Navbar />
             <Profile />
-        </div>
+        </AppWrappersStyled>
     );
 }
 
