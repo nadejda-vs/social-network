@@ -1,23 +1,25 @@
+import React from 'react'
 import {NavbarStyled} from "./navbar.styled";
+import {Link} from "react-router-dom";
 
 export function Navbar() {
     return (
         <NavbarStyled>
 
             <div>
-                <a>Profile</a>
+                <Link to="/profile">profile</Link>
             </div>
             <div>
-                <a>Messages</a>
+                <Link to="/messages">Messages</Link>
             </div>
             <div>
-                <a>News</a>
+                <Link to="/news">News</Link>
             </div>
             <div>
-            <a>Music</a>
-        </div>
+                <Link to="/music">Music</Link>
+            </div>
             <div>
-                <a>Settings</a>
+                <Link to="/settings">Settings</Link>
             </div>
 
         </NavbarStyled>
