@@ -8,10 +8,10 @@ import {Header} from "./components/header/Header";
 import {Navbar} from "./components/navbar/Navbar";
 import {Profile} from "./components/profile/Profile";
 import {AppContentStyled, AppWrappersStyled} from "./app.styled";
-import {Messages} from "./components/messages/Messages";
 import { News } from './components/news/News';
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
+import {Messages} from "./components/messages/Messages";
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
                 <Navbar/>
                 <AppContentStyled>
                     <Routes>
-                        <Route path='/' element={<Profile/>}/>
+                        <Route path='/profile' element={<Profile/>}/>
                         <Route path='/messages' element={<Messages/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>

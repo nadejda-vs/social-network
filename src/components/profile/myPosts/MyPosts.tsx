@@ -8,8 +8,9 @@ export function MyPosts() {
         <MyPostsStyled>My Posts
 
             <div>
-                <textarea></textarea>
-                <button>Add new Post</button>
+               <div><textarea></textarea></div>
+               <div><button>Add new Post</button></div>
+
             </div>
             <div>
                 <PostItem content="Hi!How are you?" likesCount={23} srcImage='avatar.jpg'/>
