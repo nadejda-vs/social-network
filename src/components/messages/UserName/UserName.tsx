@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {NavLink} from 'react-router-dom';
 
 type PropsType = {
-    id: string,
+    id: number,
     nameUser: string,
 };
 
@@ -13,7 +13,6 @@ export function UserName({nameUser, id}: PropsType) {
         <UserNameStyled>
             <NavLink to={`/messages/${id}`}>
                 {nameUser}
-                {id}
             </NavLink>
         </UserNameStyled>
     )

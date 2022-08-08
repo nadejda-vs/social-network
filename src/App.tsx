@@ -8,21 +8,24 @@ import {Header} from "./components/header/Header";
 import {Navbar} from "./components/navbar/Navbar";
 import {Profile} from "./components/profile/Profile";
 import {AppContentStyled, AppWrappersStyled} from "./app.styled";
-import { News } from './components/news/News';
+import {News} from './components/news/News';
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {Messages} from "./components/messages/Messages";
+import {PostsType} from "./index";
 
+type PropsPostsType = { posts: PostsType }
 
-function App() {
+function App(props: PropsPostsType) {
     return (
         <Router>
             <AppWrappersStyled>
                 <Header/>
                 <Navbar/>
                 <AppContentStyled>
+
                     <Routes>
-                        <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/profile'  element={<Profile posts={props.posts}/>}/>
                         <Route path='/messages' element={<Messages/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>

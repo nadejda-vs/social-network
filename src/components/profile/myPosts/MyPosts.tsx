@@ -1,20 +1,25 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
 import {PostItem} from "./post/postItem";
+import {PostsType} from "../../../index";
 
+type PropsPostsType = { posts: PostsType }
 
-export function MyPosts() {
+export function MyPosts(props: PropsPostsType) {
     return (
         <MyPostsStyled>My Posts
-
             <div>
-               <div><textarea></textarea></div>
-               <div><button>Add new Post</button></div>
-
+                <div><textarea/></div>
+                <div>
+                    <button>Add new Post</button>
+                </div>
             </div>
             <div>
-                <PostItem content="Hi!How are you?" likesCount={23} srcImage='avatar.jpg'/>
-                <PostItem content="It's very beautiful day" likesCount={77} srcImage='avatar2.jpg'/>
+                {props.posts.map(p => (<PostItem
+                    content={p.message}
+                    likesCount={p.likesCount}
+                    srcImage={p.srcImage}/>)
+                )}
             </div>
         </MyPostsStyled>
     )

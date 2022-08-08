@@ -8,7 +8,7 @@ export function Messages() {
         <MessagesStyled>
             <h6>Messages</h6>
             <DialogsContainerStyled>
-                <UserName nameUser='Viktor' id='1'/>
+                <UserName nameUser='Viktor' id={1} />
                <ItemMessage content='How you are you?'/>
             </DialogsContainerStyled>
             {/*<DialogsContainerStyled>*/}
