@@ -2,19 +2,22 @@ import React from 'react'
 import {DialogsContainerStyled, MessagesStyled} from "./messages.styled";
 import {UserName} from "./UserName/UserName";
 import {ItemMessage} from "./messageItem/ItemMessage";
+import {MessagesType, PostsType} from "../../index";
+type PropsMessagesType = { messages: MessagesType }
 
-export function Messages() {
+export function Messages(props:PropsMessagesType) {
+
     return (
         <MessagesStyled>
             <h6>Messages</h6>
             <DialogsContainerStyled>
-                <UserName nameUser='Viktor' id={1} />
-               <ItemMessage content='How you are you?'/>
+                {props.messages.map(p=>
+               <>
+                   <UserName nameUser={p.nameUser} id={p.id} />
+               <ItemMessage content={p.content}/>
+                    </>
+                    )}
             </DialogsContainerStyled>
-            {/*<DialogsContainerStyled>*/}
-            {/*    <UserName nameUser='Alina' id={2}/>*/}
-            {/*    <ItemMessage content='It is great!'/>*/}
-            {/*</DialogsContainerStyled>*/}
-        </MessagesStyled>
+                  </MessagesStyled>
     )
 }

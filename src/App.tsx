@@ -12,9 +12,10 @@ import {News} from './components/news/News';
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {Messages} from "./components/messages/Messages";
-import {PostsType} from "./index";
+import {MessagesType, PostsType} from "./index";
 
-type PropsPostsType = { posts: PostsType }
+type PropsPostsType = { posts: PostsType
+messages:MessagesType}
 
 function App(props: PropsPostsType) {
     return (
@@ -26,7 +27,7 @@ function App(props: PropsPostsType) {
 
                     <Routes>
                         <Route path='/profile'  element={<Profile posts={props.posts}/>}/>
-                        <Route path='/messages' element={<Messages/>}/>
+                        <Route path='/messages' element={<Messages messages={props.messages} />}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
