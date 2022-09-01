@@ -2,7 +2,8 @@ import React from 'react'
 import {ProfileStyled} from "./profile.styled";
 import {MyPosts} from "./myPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
-import {PostsType} from "../../index";
+import {PostsType} from "../../redux/state";
+
 type PropsPostsType = { posts: PostsType }
 
 export function Profile(props:PropsPostsType) {

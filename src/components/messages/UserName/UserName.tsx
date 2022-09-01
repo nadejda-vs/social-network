@@ -1,6 +1,5 @@
 import React from 'react'
 import {UserNameStyled} from "./userName.styled";
-import {Link} from "react-router-dom";
 import {NavLink} from 'react-router-dom';
 
 type PropsType = {

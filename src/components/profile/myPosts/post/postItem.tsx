@@ -1,5 +1,4 @@
 import React from 'react'
-import {PotItemStyled} from "./potItem.styled";
 
 type PropsType = {
     content: string,

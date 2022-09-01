@@ -2,7 +2,8 @@ import React from 'react'
 import {DialogsContainerStyled, MessagesStyled} from "./messages.styled";
 import {UserName} from "./UserName/UserName";
 import {ItemMessage} from "./messageItem/ItemMessage";
-import {MessagesType, PostsType} from "../../index";
+import {MessagesType} from "../../redux/state";
+
 type PropsMessagesType = { messages: MessagesType }
 
 export function Messages(props:PropsMessagesType) {

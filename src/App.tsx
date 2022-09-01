@@ -12,11 +12,10 @@ import {News} from './components/news/News';
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {Messages} from "./components/messages/Messages";
-import {MessagesType, PostsType} from "./index";
+import {MessagesType, PostsType} from "./redux/state";
 
-type PropsPostsType = { posts: PostsType
+type PropsPostsType = { posts:PostsType,
 messages:MessagesType}
-
 function App(props: PropsPostsType) {
     return (
         <Router>

@@ -1,7 +1,8 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
 import {PostItem} from "./post/postItem";
-import {PostsType} from "../../../index";
+import {PostsType} from "../../../redux/state";
+
 
 type PropsPostsType = { posts: PostsType }
 
