@@ -23,7 +23,6 @@ function App(props: PropsPostsType) {
                 <Header/>
                 <Navbar/>
                 <AppContentStyled>
-
                     <Routes>
                         <Route path='/profile'  element={<Profile posts={props.posts}/>}/>
                         <Route path='/messages' element={<Messages messages={props.messages} />}/>

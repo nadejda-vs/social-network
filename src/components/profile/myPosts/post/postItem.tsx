@@ -10,7 +10,7 @@ export function PostItem  ({content,likesCount,srcImage}:PropsType)  {
 
         <div>
           <div>
-              <img src={srcImage} style={{width:"50px"}}/>
+              <img src={srcImage} style={{width:"50px"}} alt={''}/>
               {content}
               <span>Likes </span>{likesCount}
           </div>

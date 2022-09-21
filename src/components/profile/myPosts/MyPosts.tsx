@@ -1,25 +1,37 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
-import {PostItem} from "./post/postItem";
 import {PostsType} from "../../../redux/state";
-
+import {PostItem} from "./post/postItem";
 
 type PropsPostsType = { posts: PostsType }
 
 export function MyPosts(props: PropsPostsType) {
+
+    let newElementPost = React.createRef<HTMLTextAreaElement>()
+    const addNewPost = () => {
+        console.log(newElementPost.current?.value)
+        let text = newElementPost.current?.value
+        alert(text)
+    }
+
     return (
-        <MyPostsStyled>My Posts
+        <MyPostsStyled>
+            My Posts
             <div>
-                <div><textarea/></div>
                 <div>
-                    <button>Add new Post</button>
+                    <textarea ref={newElementPost}/>
+                </div>
+                <div>
+                    <button onClick={addNewPost}>Add new Post</button>
                 </div>
             </div>
             <div>
-                {props.posts.map(p => (<PostItem
-                    content={p.message}
-                    likesCount={p.likesCount}
-                    srcImage={p.srcImage}/>)
+                {props.posts.map(p =>
+                    <PostItem
+                        key={p.id}
+                        content={p.message}
+                        likesCount={p.likesCount}
+                        srcImage={p.srcImage}/>
                 )}
             </div>
         </MyPostsStyled>

@@ -6,19 +6,19 @@ import {MessagesType} from "../../redux/state";
 
 type PropsMessagesType = { messages: MessagesType }
 
-export function Messages(props:PropsMessagesType) {
+export function Messages(props: PropsMessagesType) {
 
     return (
         <MessagesStyled>
             <h6>Messages</h6>
             <DialogsContainerStyled>
-                {props.messages.map(p=>
-               <>
-                   <UserName nameUser={p.nameUser} id={p.id} />
-               <ItemMessage content={p.content}/>
+                {props.messages.map(p =>
+                    <>
+                        <UserName nameUser={p.nameUser} id={p.id} key={p.id}/>
+                        <ItemMessage content={p.content} />
                     </>
-                    )}
+                )}
             </DialogsContainerStyled>
-                  </MessagesStyled>
+        </MessagesStyled>
     )
 }
