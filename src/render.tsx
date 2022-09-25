@@ -8,8 +8,8 @@ const root = ReactDOM.createRoot(
 );
 
 export const Rerender = (state: any) => {
-    console.log(state.profilePage.posts)
     return root.render(<App posts={state.profilePage.posts}
+                            newPostText={state.profilePage.newPostText}
                      messages={state.messagesPage.messages}/>)
 }
 
