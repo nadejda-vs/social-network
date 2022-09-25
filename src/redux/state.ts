@@ -1,3 +1,4 @@
+import {Rerender} from "../render";
 
 export type PostItemType={
     id:number
@@ -28,4 +29,10 @@ export const state:StateType ={
         {id: 2,  nameUser:'Kate',content:'It is a message'},
 
     ]}
+}
+export const addPost = (messagePost:string) => {
+    let newPost= {id: 23, message: messagePost, likesCount: 77,srcImage:'avatar.jpg'}
+    state.profilePage.posts.push(newPost)
+        Rerender(state)
+
 }

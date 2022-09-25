@@ -1,6 +1,6 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
-import {PostsType} from "../../../redux/state";
+import {addPost, PostsType} from "../../../redux/state";
 import {PostItem} from "./post/postItem";
 
 type PropsPostsType = { posts: PostsType }
@@ -11,8 +11,10 @@ export function MyPosts(props: PropsPostsType) {
     const addNewPost = () => {
         console.log(newElementPost.current?.value)
         let text = newElementPost.current?.value
-        alert(text)
+        addPost(text as string)
+
     }
+
 
     return (
         <MyPostsStyled>
