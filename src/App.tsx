@@ -14,8 +14,11 @@ import {Settings} from "./components/settings/Settings";
 import {Messages} from "./components/messages/Messages";
 import {MessagesType, PostsType} from "./redux/state";
 
-type PropsPostsType = { posts:PostsType,newPostText:string,
-messages:MessagesType}
+type PropsPostsType = {
+    posts: PostsType, newPostText: string,
+    messages: MessagesType, newMessageText: string
+}
+
 function App(props: PropsPostsType) {
     return (
         <Router>
@@ -24,8 +27,12 @@ function App(props: PropsPostsType) {
                 <Navbar/>
                 <AppContentStyled>
                     <Routes>
-                        <Route path='/profile'  element={<Profile newPostText={props.newPostText} posts={props.posts}/>}/>
-                        <Route path='/messages' element={<Messages messages={props.messages} />}/>
+                        <Route path='/profile'
+                               element={<Profile newPostText={props.newPostText}
+                                                 posts={props.posts}/>}/>
+                        <Route path='/messages'
+                               element={<Messages newMessageText={props.newMessageText}
+                                                  messages={props.messages}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>

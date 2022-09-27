@@ -1,4 +1,4 @@
-import {Rerender} from "../render";
+import {Rerender} from "../index";
 
 export type PostItemType = {
     id: number
@@ -16,7 +16,7 @@ export type PostsType = Array<PostItemType>
 export type MessagesType = Array<MessageItemType>
 export type StateType = {
     profilePage: { posts: PostsType, newPostText: string },
-    messagesPage: { messages: MessagesType }
+    messagesPage: { messages: MessagesType, newMessageText: string }
 }
 export const state: StateType = {
     profilePage: {
@@ -31,18 +31,28 @@ export const state: StateType = {
             {id: 1, nameUser: 'Viktor', content: 'How you are you?'},
             {id: 2, nameUser: 'Kate', content: 'It is a message'},
 
-        ]
+        ],
+        newMessageText: '',
     }
 }
 
 export const addPost = () => {
-    let newPost = {id: 23, message:state.profilePage.newPostText, likesCount: 77, srcImage: 'avatar.jpg'}
+    let newPost = {id: 23, message: state.profilePage.newPostText, likesCount: 77, srcImage: 'avatar.jpg'}
     state.profilePage.posts.push(newPost)
-    state.profilePage.newPostText=''
+    state.profilePage.newPostText = ''
     Rerender(state)
 }
 export const updateNewPostText = (newText: string) => {
-
-    state.profilePage.newPostText=newText
+    state.profilePage.newPostText = newText
+    Rerender(state)
+}
+export const addMessageText = () => {
+    let newMessageText = {id: 2, nameUser: state.messagesPage.newMessageText, content: 'It is a message'}
+    state.messagesPage.messages.push(newMessageText)
+    state.messagesPage.newMessageText=''
+    Rerender(state)
+}
+export const updateMessageText = (newMessage: string) => {
+    state.messagesPage.newMessageText = newMessage
     Rerender(state)
 }
