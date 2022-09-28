@@ -1,5 +1,6 @@
-import {Rerender} from "../index";
-
+let rerender=(state:any)=>{
+ return (state)
+}
 export type PostItemType = {
     id: number
     message: string
@@ -40,19 +41,22 @@ export const addPost = () => {
     let newPost = {id: 23, message: state.profilePage.newPostText, likesCount: 77, srcImage: 'avatar.jpg'}
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    Rerender(state)
+    rerender(state)
 }
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    Rerender(state)
+    rerender(state)
 }
 export const addMessageText = () => {
-    let newMessageText = {id: 2, nameUser: state.messagesPage.newMessageText, content: 'It is a message'}
+    let newMessageText = {id: 4, nameUser: state.messagesPage.newMessageText, content: 'It is a message'}
     state.messagesPage.messages.push(newMessageText)
     state.messagesPage.newMessageText=''
-    Rerender(state)
+    rerender(state)
 }
 export const updateMessageText = (newMessage: string) => {
     state.messagesPage.newMessageText = newMessage
-    Rerender(state)
+    rerender(state)
+}
+export const subscribe = (observer:any) => {
+    rerender=observer
 }
