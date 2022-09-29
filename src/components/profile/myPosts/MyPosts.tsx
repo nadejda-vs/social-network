@@ -1,6 +1,6 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
-import {addPost, PostsType, updateNewPostText} from "../../../redux/state";
+import {PostsType, store} from "../../../redux/state";
 import {PostItem} from "./post/postItem";
 
 type PropsPostsType = { posts: PostsType, newPostText: string }
@@ -9,11 +9,11 @@ export function MyPosts(props: PropsPostsType) {
 
     let newElementPost = React.createRef<HTMLTextAreaElement>()
     const addNewPost = () => {
-        addPost()
+        store.addPost()
     }
     const onChangePost = () => {
         let text = newElementPost.current?.value
-        updateNewPostText(text as string)
+        store.updateNewPostText(text as string)
     }
     return (
         <MyPostsStyled>

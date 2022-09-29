@@ -1,6 +1,5 @@
-let rerender=(state:any)=>{
- return (state)
-}
+import {rerender} from "../index";
+
 export type PostItemType = {
     id: number
     message: string
@@ -19,44 +18,63 @@ export type StateType = {
     profilePage: { posts: PostsType, newPostText: string },
     messagesPage: { messages: MessagesType, newMessageText: string }
 }
-export const state: StateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: "Hi!How are you?", likesCount: 2, srcImage: 'avatar.jpg'},
-            {id: 2, message: "It's very beautiful day", likesCount: 5, srcImage: 'avatar2.jpg'},
-        ],
-        newPostText: '',
+export type StoreType = {
+    _state: StateType,
+    getState: () => StateType,
+    addPost: () => void,
+    updateNewPostText: (newText: string) => void,
+    addMessageText: () => void,
+    updateMessageText: (newMessage: string) => void,
+    subscribe: (observer: any) => void,
+    rerender: () => void,
+}
+
+export const store: StoreType = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: "Hi!How are you?", likesCount: 2, srcImage: 'avatar.jpg'},
+                {id: 2, message: "It's very beautiful day", likesCount: 5, srcImage: 'avatar2.jpg'},
+            ],
+            newPostText: ''
+        },
+        messagesPage: {
+            messages: [
+                {id: 1, nameUser: 'Viktor', content: 'How you are you?'},
+                {id: 2, nameUser: 'Kate', content: 'It is a message'},
+
+            ],
+            newMessageText: '',
+        }
     },
-    messagesPage: {
-        messages: [
-            {id: 1, nameUser: 'Viktor', content: 'How you are you?'},
-            {id: 2, nameUser: 'Kate', content: 'It is a message'},
-
-        ],
-        newMessageText: '',
+    getState() {
+        return this._state;
+    },
+    rerender() {
+        console.log('state changed')
+    },
+    addPost() {
+        let newPost = {id: 23, message: this._state.profilePage.newPostText, likesCount: 77, srcImage: 'avatar.jpg'}
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        rerender(this._state)
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        rerender(this._state);
+    },
+    addMessageText() {
+        let newMessageText = {id: 4, nameUser: this._state.messagesPage.newMessageText, content: 'It is a message'}
+        this._state.messagesPage.messages.push(newMessageText);
+        this._state.messagesPage.newMessageText = '';
+        rerender(this._state);
+    },
+    updateMessageText(newMessage: string) {
+        this._state.messagesPage.newMessageText = newMessage;
+        rerender(this._state);
+    },
+    subscribe(observer: any) {
+        let rerender = observer;
+        return rerender
     }
-}
-
-export const addPost = () => {
-    let newPost = {id: 23, message: state.profilePage.newPostText, likesCount: 77, srcImage: 'avatar.jpg'}
-    state.profilePage.posts.push(newPost)
-    state.profilePage.newPostText = ''
-    rerender(state)
-}
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    rerender(state)
-}
-export const addMessageText = () => {
-    let newMessageText = {id: 4, nameUser: state.messagesPage.newMessageText, content: 'It is a message'}
-    state.messagesPage.messages.push(newMessageText)
-    state.messagesPage.newMessageText=''
-    rerender(state)
-}
-export const updateMessageText = (newMessage: string) => {
-    state.messagesPage.newMessageText = newMessage
-    rerender(state)
-}
-export const subscribe = (observer:any) => {
-    rerender=observer
 }
