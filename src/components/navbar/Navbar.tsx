@@ -7,7 +7,7 @@ export function Navbar() {
         <NavbarStyled>
 
             <div>
-                <Link to="/profile">profile</Link>
+                <Link to="/profile">Profile</Link>
             </div>
             <div>
                 <Link to="/messages">Messages</Link>
