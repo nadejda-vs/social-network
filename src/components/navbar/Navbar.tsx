@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 export function Navbar() {
     return (
         <NavbarStyled>
-
             <div>
                 <Link to="/profile">Profile</Link>
             </div>

@@ -1,13 +1,14 @@
+import {v1} from "uuid";
 
 export type PostItemType = {
-    id: number
+    id: string
     message: string
     likesCount: number
     srcImage: string
 }
 
 export type MessageItemType = {
-    id: number
+    id: string
     nameUser: string
     content: string
 }
@@ -26,24 +27,25 @@ export type StoreType = {
 }
 export type ActionType =
     {
-        type?: 'ADD-POST' | 'UPDATE-NEW-POST-TEXT' | 'ADD-MESSAGES' | 'UPDATE-MESSAGE-TEXT',
-        newText?: any,
-        newMessage?: any,
+        type: 'ADD-POST' | 'UPDATE-NEW-POST-TEXT' | 'ADD-MESSAGES' | 'UPDATE-MESSAGE-TEXT',
+        newText?: string,
+        newMessageText?: string,
     }
+
 
 export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: "Hi!How are you?", likesCount: 2, srcImage: 'avatar.jpg'},
-                {id: 2, message: "It's very beautiful day", likesCount: 5, srcImage: 'avatar2.jpg'},
+                {id: v1(), message: "Hi!How are you?", likesCount: 2, srcImage: 'avatar.jpg'},
+                {id: v1(), message: "It's very beautiful day", likesCount: 5, srcImage: 'avatar2.jpg'},
             ],
             newPostText: ''
         },
         messagesPage: {
             messages: [
-                {id: 1, nameUser: 'Viktor', content: 'How you are you?'},
-                {id: 2, nameUser: 'Kate', content: 'It is a message'},
+                {id: v1(), nameUser: 'Viktor', content: 'How you are you?'},
+                {id: v1(), nameUser: 'Kate', content: 'It is a message'},
 
             ],
             newMessageText: '',
@@ -60,21 +62,54 @@ export const store: StoreType = {
     },
     dispatch(action) {
         if (action.type === 'ADD-POST') {
-            let newPost = {id: 23, message: this._state.profilePage.newPostText, likesCount: 77, srcImage: 'avatar.jpg'}
+            let newPost = {
+                id: v1(),
+                message: this._state.profilePage.newPostText,
+                likesCount: 77,
+                srcImage: 'avatar.jpg'
+            }
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubscriber(this._state)
+
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
+            if (action.newText != null) {
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state);
+            }
+
         } else if (action.type === 'ADD-MESSAGES') {
-            let newMessageText = {id: 4, nameUser: this._state.messagesPage.newMessageText, content: 'It is a message'}
+            let newMessageText = {
+                id: v1(),
+                nameUser: this._state.messagesPage.newMessageText,
+                content: this._state.messagesPage.newMessageText
+            }
             this._state.messagesPage.messages.push(newMessageText);
             this._state.messagesPage.newMessageText = '';
             this._callSubscriber(this._state);
+
         } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.messagesPage.newMessageText = action.newMessage;
-            this._callSubscriber(this._state);
+            if (action.newMessageText != null) {
+                this._state.messagesPage.newMessageText = action.newMessageText;
+                this._callSubscriber(this._state);
+            }
         }
     }
+}
+export const addPostActionCreator = () => ({type: 'ADD-POST'} as const)
+export const updatePostActionCreator = (text: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    } as const
+}
+
+export const addMessagesActionCreator = () => ({type: 'ADD-MESSAGES'} as const)
+
+export const updateMessagesActionCreator = (text: string) => {
+
+    return {
+        type: 'UPDATE-MESSAGE-TEXT',
+        newMessageText: text
+    } as const
 }

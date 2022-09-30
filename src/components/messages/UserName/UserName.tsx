@@ -3,7 +3,7 @@ import {UserNameStyled} from "./userName.styled";
 import {NavLink} from 'react-router-dom';
 
 type PropsType = {
-    id: number,
+    id: string,
     nameUser: string,
 };
 
