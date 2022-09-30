@@ -9,11 +9,12 @@ export function MyPosts(props: PropsPostsType) {
 
     let newElementPost = React.createRef<HTMLTextAreaElement>()
     const addNewPost = () => {
-        store.addPost()
+        store.dispatch.bind(store)({type: 'ADD-POST'})
     }
     const onChangePost = () => {
         let text = newElementPost.current?.value
-        store.updateNewPostText(text as string)
+
+       store.dispatch.bind(store)({type: 'UPDATE-NEW-POST-TEXT',newText:text as string})
     }
     return (
         <MyPostsStyled>

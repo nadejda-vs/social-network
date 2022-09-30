@@ -2,18 +2,20 @@ import React from "react";
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
-import {store, } from "./redux/state";
+import {store} from "./redux/state";
 
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
- export const rerender = (state: any) => {
-    return root.render(<App posts={state.profilePage.posts}
-                            newPostText={state.profilePage.newPostText}
-                            messages={state.messagesPage.messages}
-                            newMessageText={state.messagesPage.newMessageText}/>)
+export const rerender = (state: any) => {
+    return root.render(<App
+        posts={state.profilePage.posts}
+        newPostText={state.profilePage.newPostText}
+        messages={state.messagesPage.messages}
+        newMessageText={state.messagesPage.newMessageText}
+    />)
 }
 
 rerender(store.getState())

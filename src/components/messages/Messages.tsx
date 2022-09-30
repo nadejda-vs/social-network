@@ -9,11 +9,13 @@ type PropsMessagesType = { messages: MessagesType, newMessageText: string }
 export function Messages(props: PropsMessagesType) {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
     const addNewMessage = () => {
-        store.addMessageText()
+        store.dispatch.bind(store)({type: 'ADD-MESSAGES'})
+
     }
     const onChangeMessageText = () => {
         let message = newMessageElement.current?.value
-        store.updateMessageText(message as string)
+        store.dispatch.bind(store)({type: 'UPDATE-MESSAGE-TEXT', newMessage: message as string})
+
     }
     return (
         <MessagesStyled>
