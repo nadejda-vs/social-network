@@ -1,9 +1,11 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
-import {addPostActionCreator, PostsType, store, updatePostActionCreator} from "../../../redux/state";
+import {PostsType, store,} from "../../../redux/store";
 import {PostItem} from "./post/postItem";
+import {addPostActionCreator, updatePostActionCreator} from "../../../redux/profilePage-reducer";
 
 type PropsPostsType = { posts: PostsType, newPostText: string }
+
 
 export function MyPosts(props: PropsPostsType) {
 
@@ -13,9 +15,8 @@ export function MyPosts(props: PropsPostsType) {
     }
     const onChangePost = () => {
         let text = newElementPost.current?.value
-        if (text){
-            let action=updatePostActionCreator(text)
-                store.dispatch.bind(store)(action)
+        if (text) {
+            store.dispatch.bind(store)(updatePostActionCreator(text))
         }
     }
     return (

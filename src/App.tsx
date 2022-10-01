@@ -12,7 +12,7 @@ import {News} from './components/news/News';
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
 import {Messages} from "./components/messages/Messages";
-import {MessagesType, PostsType} from "./redux/state";
+import {MessagesType, PostsType} from "./redux/store";
 
 type PropsPostsType = {
     posts: PostsType, newPostText: string,
