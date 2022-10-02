@@ -12,26 +12,29 @@ export type ActionUpdatePostType =
     }
 
 
-const profilePageReducer = (state: ProfilePageType, action:  AllActionType) => {
+const profilePageReducer = (state: ProfilePageType, action: AllActionType) => {
+    switch (action.type) {
+        case "ADD-POST":
+            let newPost = {
+                id: v1(),
+                message: state.newPostText,
+                likesCount: 77,
+                srcImage: 'avatar.jpg'
+            }
+            state.posts.push(newPost);
+            state.newPostText = '';
+            return state;
 
-    if (action.type === 'ADD-POST') {
+        case "UPDATE-NEW-POST-TEXT":
+            if (action.newText != null) {
+                state.newPostText = action.newText;
+                return state
+            }
+            return state;
 
-        let newPost = {
-            id: v1(),
-            message: state.newPostText,
-            likesCount: 77,
-            srcImage: 'avatar.jpg'
-        }
-        state.posts.push(newPost);
-        state.newPostText = '';
-
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-        if (action.newText != null) {
-            state.newPostText = action.newText;
-        }
-
+        default:
+            return state;
     }
-    return state;
 }
 
 export const addPostActionCreator = () => {
