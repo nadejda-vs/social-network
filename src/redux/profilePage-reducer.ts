@@ -11,8 +11,14 @@ export type ActionUpdatePostType =
         newText: string,
     }
 
-
-const profilePageReducer = (state: ProfilePageType, action: AllActionType) => {
+let initialState: ProfilePageType={
+    posts: [
+        {id: v1(), message: "Hi!How are you?", likesCount: 2, srcImage: 'avatar.jpg'},
+        {id: v1(), message: "It's very beautiful day", likesCount: 5, srcImage: 'avatar2.jpg'},
+    ],
+    newPostText: ''
+}
+export const profilePageReducer = (state=initialState, action: AllActionType) => {
     switch (action.type) {
         case "ADD-POST":
             let newPost = {

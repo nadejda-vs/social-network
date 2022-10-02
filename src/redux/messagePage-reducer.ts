@@ -11,8 +11,15 @@ export type ActionUpdateMessagesType =
         type: 'UPDATE-MESSAGE-TEXT',
         newMessageText: string,
     }
+let initialState: MessagesPageType = {
+        messages: [
+        {id: v1(), nameUser: 'Viktor', content: 'How you are you?'},
+        {id: v1(), nameUser: 'Kate', content: 'It is a message'},
+    ],
+    newMessageText: '',
+}
 
-const messagesPageReducer = (state: MessagesPageType, action: AllActionType) => {
+export  const messagesPageReducer = (state = initialState, action: AllActionType) => {
 
     switch (action.type) {
         case "ADD-MESSAGES":
@@ -32,7 +39,8 @@ const messagesPageReducer = (state: MessagesPageType, action: AllActionType) => 
             }
             return state;
 
-        default: return state;
+        default:
+            return state;
     }
 }
 
