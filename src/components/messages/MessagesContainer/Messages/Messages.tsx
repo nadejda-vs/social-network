@@ -4,24 +4,26 @@ import {UserName} from "./UserName/UserName";
 import {ItemMessage} from "./messageItem/ItemMessage";
 import {
     MessagesType,
-    store,
-} from "../../redux/store";
-import {addMessagesActionCreator, updateMessagesActionCreator} from "../../redux/messagePage-reducer";
+} from "../../../../redux/store";
 
 
-type PropsMessagesType = { messages: MessagesType, newMessageText: string }
+type PropsMessagesType = {
+    messages: MessagesType, newMessageText: string,
+    updateMessages: (message: string) => void
+    addMessages: () => void
+}
 
 
-export function Messages(props: PropsMessagesType) {
+export const Messages = (props: PropsMessagesType) => {
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
     const addNewMessage = () => {
-        store.dispatch.bind(store)(addMessagesActionCreator())
+        props.addMessages()
     }
     const onChangeMessageText = () => {
         let message = newMessageElement.current?.value
         if (message) {
-            store.dispatch.bind(store)(updateMessagesActionCreator(message))
+            props.updateMessages(message)
         }
     }
 

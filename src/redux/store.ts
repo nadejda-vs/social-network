@@ -67,7 +67,7 @@ export const store: StoreType = {
     },
     dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action)
-      this._state.messagesPage = messagesPageReducer(this._state.messagesPage, action)
+        this._state.messagesPage = messagesPageReducer(this._state.messagesPage, action)
         this._callSubscriber(this._state);
     }
 }

@@ -1,16 +1,16 @@
 import React from 'react'
 import {ProfileStyled} from "./profile.styled";
-import {MyPosts} from "./myPosts/MyPosts";
 import {ProfileInfo} from "./profileInfo/ProfileInfo";
-import {PostsType} from "../../redux/store";
+import {StoreType} from "../../redux/store";
+import {MyPostsContainer} from "./MyPostsContainer/MyPostsContainer";
 
-type PropsPostsType = { posts: PostsType,newPostText:string }
+type PropsPostsType = { store:StoreType}
 
 export function Profile(props:PropsPostsType) {
     return (
         <ProfileStyled>
            <ProfileInfo  userName='Nadejda' description='I have a dog' imgPath='image1.jpg'/>
-            <MyPosts  newPostText={props.newPostText} posts={props.posts}/>
+            <MyPostsContainer store={props.store}/>
         </ProfileStyled>
     )
 }

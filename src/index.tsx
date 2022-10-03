@@ -5,24 +5,21 @@ import App from "./App";
 import {store} from "./redux/store";
 
 
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-export let rerender = (state:any) => {
-    return root.render(<App
-        posts={state.profilePage.posts}
-        newPostText={state.profilePage.newPostText}
-        messages={state.messagesPage.messages}
-        newMessageText={state.messagesPage.newMessageText}
-    />)
+export let rerender = (state: any) => {
+    return root.render(
+        <App
+            store={store}/>)
 }
 
 rerender(store.getState())
-store.subscribe(()=>{
-    let state=store.getState()
-    rerender(state)})
+store.subscribe(() => {
+    let state = store.getState()
+    rerender(state)
+})
 // subscribe(rerender)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

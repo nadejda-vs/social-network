@@ -1,22 +1,25 @@
 import React from 'react'
 import {MyPostsStyled} from "./myPosts.styled";
-import {PostsType, store,} from "../../../redux/store";
+
 import {PostItem} from "./post/postItem";
-import {addPostActionCreator, updatePostActionCreator} from "../../../redux/profilePage-reducer";
+import {StoreType} from "../../../../redux/store";
 
-type PropsPostsType = { posts: PostsType, newPostText: string }
+type PropsPostsType = { store: StoreType,
+    addNewPost: () => void,
+    onChangePostText: (text: string) => void }
 
 
-export function MyPosts(props: PropsPostsType) {
-
+export const MyPosts = (props: PropsPostsType) => {
+    let state = props.store.getState().profilePage
     let newElementPost = React.createRef<HTMLTextAreaElement>()
-    const addNewPost = () => {
-        store.dispatch.bind(store)(addPostActionCreator())
+    const addPost= () => {
+        props.addNewPost()
     }
     const onChangePost = () => {
         let text = newElementPost.current?.value
         if (text) {
-            store.dispatch.bind(store)(updatePostActionCreator(text))
+            // store.dispatch.bind(store)(updatePostActionCreator(text))
+            props.onChangePostText(text)
         }
     }
     return (
@@ -26,14 +29,14 @@ export function MyPosts(props: PropsPostsType) {
                 <div>
                     <textarea
                         onChange={onChangePost}
-                        ref={newElementPost} value={props.newPostText}/>
+                        ref={newElementPost} value={state.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addNewPost}>Add new Post</button>
+                    <button onClick={addPost}>Add new Post</button>
                 </div>
             </div>
             <div>
-                {props.posts.map(p =>
+                {state.posts.map(p =>
                     <PostItem
                         key={p.id}
                         content={p.message}

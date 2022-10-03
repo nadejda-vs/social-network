@@ -11,12 +11,11 @@ import {AppContentStyled, AppWrappersStyled} from "./app.styled";
 import {News} from './components/news/News';
 import {Music} from "./components/music/Music";
 import {Settings} from "./components/settings/Settings";
-import {Messages} from "./components/messages/Messages";
-import {MessagesType, PostsType} from "./redux/store";
+import { StoreType} from "./redux/store";
+import {MessagesContainer} from "./components/messages/MessagesContainer/MessagesContainer";
 
 type PropsPostsType = {
-    posts: PostsType, newPostText: string,
-    messages: MessagesType, newMessageText: string
+    store:StoreType
 }
 
 function App(props: PropsPostsType) {
@@ -28,11 +27,9 @@ function App(props: PropsPostsType) {
                 <AppContentStyled>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile newPostText={props.newPostText}
-                                                 posts={props.posts}/>}/>
+                               element={<Profile store={props.store}/>}/>
                         <Route path='/messages'
-                               element={<Messages newMessageText={props.newMessageText}
-                                                  messages={props.messages}/>}/>
+                               element={<MessagesContainer store={props.store}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
